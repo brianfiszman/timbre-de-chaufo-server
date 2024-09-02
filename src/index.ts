@@ -5,7 +5,6 @@ import { DataSource } from 'typeorm';
 import { Images } from './Image';
 
 const app = express();
-const port = process.env.PORT || 8081;
 
 configDotenv({ path: ".env.local" }); // read .env.config
 
@@ -52,8 +51,4 @@ app.get('/images',  async (_req: Request, res: Response) => {
   catch(error){
     console.error("Error al obtener las imágenes: ", error)
   }
-})
-
-app.listen(port, () => {
-  return console.log(`Server is listening on ${port}`);
 })
