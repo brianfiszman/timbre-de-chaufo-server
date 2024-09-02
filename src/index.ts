@@ -47,7 +47,7 @@ app.get('/', async (_req: Request, res: Response) => {
 app.get('/images',  async (_req: Request, res: Response) => {
   try{
     const response = await getImages();
-    res.send(response)
+    res.json({items: response});
   }
   catch(error){
     console.error("Error al obtener las imágenes: ", error)
