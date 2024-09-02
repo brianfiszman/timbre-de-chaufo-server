@@ -5,7 +5,7 @@ import { DataSource } from 'typeorm';
 import { Images } from './Image';
 
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 443;
 
 configDotenv({ path: ".env.local" }); // read .env.config
 
