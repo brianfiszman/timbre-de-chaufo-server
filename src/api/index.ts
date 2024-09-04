@@ -5,7 +5,7 @@ import { DataSource } from 'typeorm';
 import { Images } from './Image';
 
 const app = express();
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 3000;
 
 configDotenv({ path: ".env.local" }); // read .env.config
 
@@ -28,19 +28,26 @@ export default async function handler(request: VercelRequest, response: VercelRe
       migrations: [],
     });
 
-    await AppDataSource.initialize();
-
-    switch(request.method){
-      case 'GET':
-        if(request.url === '/images'){
-          const images = await AppDataSource.getRepository(Images).find();
-          response.json({items: images});
-        }
-        else{
-          response.status(404).send('Not found');
-        }
-        break;
-    }
+    AppDataSource.initialize()
+      .then(() => {
+        app.get('/', (request: Request, response: Response) => {
+          response.send('Hello World!');
+        });
+        app.get('/images', async (request: Request, response: Response) => {
+          console.log("Prueba");
+          try{
+            const images = await AppDataSource.getRepository(Images).find();
+            response.json({items: images});
+          }
+          catch(error)
+          { 
+            console.error("Error de conexión: ", error); 
+          }
+        });
+      })
+      .catch((err) => {
+        console.error("Error during Data Source initialization:", err);
+      });
   }
   catch(error)
   { 

@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "rewrites": [
+    {"source": "/.(.*)", "destination": "/api"}
+  ],
   "builds": [
     {
       "src": "dist/index.js",
@@ -9,12 +12,6 @@
           "dist/**"
         ]
       }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/index.js"
     }
   ]
 }
