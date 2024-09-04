@@ -6,8 +6,9 @@ import { ImageController, ImageService } from "./images";
 
 configDotenv({ path: ".env.local" }); // read .env.config
 
-export default async function Handler() {
-  const app = express();
+const app = express();
+
+async function Handler() {
   const port = process.env.PORT || 443;
 
   const dataSource = await createPostgreSQLConection();
@@ -23,8 +24,7 @@ export default async function Handler() {
   });
 
   app.get("/images", imageController.list);
-
-  app.listen(port, () => {
-    return console.log(`Server is listening on ${port}`);
-  });
 }
+
+Handler();
+export default app;
