@@ -11,8 +11,6 @@ export class ImageController {
     try {
       const data = await this.imageService.getImages();
 
-      console.log(data);
-
       if (!data) {
         res.json({
           data: "No images found",
