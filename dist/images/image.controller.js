@@ -17,6 +17,7 @@ class ImageController {
         this.list = (_req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const data = yield this.imageService.getImages();
+                console.log(data);
                 if (!data) {
                     res.json({
                         data: "No images found",
