@@ -24,6 +24,10 @@ async function Handler() {
   });
 
   app.get("/images", imageController.list);
+
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
 }
 
 Handler();
