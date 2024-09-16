@@ -1,0 +1,1 @@
+export { createPostgreSQLConection } from "./pg";
