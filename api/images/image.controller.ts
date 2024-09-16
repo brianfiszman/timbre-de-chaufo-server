@@ -8,6 +8,7 @@ export class ImageController {
   }
 
   list = async (_req: Request, res: Response) => {
+
     try {
       const data = await this.imageService.getImages();
 
@@ -21,6 +22,7 @@ export class ImageController {
 
       res.json({ data, statusCode: OK, statusMessage: "OK" });
     } catch (error) {
+      console.log(error);
       res.json({
         data: error,
         statusCode: INTERNAL_SERVER_ERROR,

@@ -27,6 +27,7 @@ class ImageController {
                 res.json({ data, statusCode: http_status_codes_1.OK, statusMessage: "OK" });
             }
             catch (error) {
+                console.log(error);
                 res.json({
                     data: error,
                     statusCode: http_status_codes_1.INTERNAL_SERVER_ERROR,
