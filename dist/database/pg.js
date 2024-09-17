@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPostgreSQLConection = void 0;
 const typeorm_1 = require("typeorm");
-const images_1 = require("../images");
+const image_model_1 = require("../images/image.model");
 const createPostgreSQLConection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const AppDataSource = new typeorm_1.DataSource({
@@ -24,7 +24,7 @@ const createPostgreSQLConection = () => __awaiter(void 0, void 0, void 0, functi
             synchronize: false,
             logging: true,
             ssl: { rejectUnauthorized: false },
-            entities: [images_1.Images],
+            entities: [image_model_1.Images],
             subscribers: [],
             migrations: [],
         });

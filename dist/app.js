@@ -8,33 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = require("dotenv");
 const http_status_codes_1 = require("http-status-codes");
-const database_1 = require("./database");
-const images_1 = require("./images");
-(0, dotenv_1.configDotenv)({ path: ".env.local" }); // read .env.config
-const app = (0, express_1.default)();
-function Handler() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const port = process.env.PORT || 443;
-        const dataSource = yield (0, database_1.createPostgreSQLConection)();
-        const imageService = new images_1.ImageService(dataSource);
-        const imageController = new images_1.ImageController(imageService);
-        app.get("/", (_req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res.json({
-                data: null,
-                statusCode: http_status_codes_1.OK,
-                statusMessage: "OK",
-            });
-        }));
-        app.get("/images", imageController.list);
-    });
-}
-Handler();
-exports.default = app;
+exports.default = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.method === "GET")
+        return res.status(http_status_codes_1.OK).send({ message: "OK", statusCode: http_status_codes_1.OK, data: null });
+    return res
+        .status(http_status_codes_1.NOT_FOUND)
+        .json({ message: "Not Found", statusCode: http_status_codes_1.NOT_FOUND, data: null });
+});
 //# sourceMappingURL=app.js.map

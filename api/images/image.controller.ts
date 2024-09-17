@@ -1,14 +1,13 @@
-import type { Request, Response } from "express";
 import { ImageService } from "./image.service";
 import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from "http-status-codes";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 export class ImageController {
   constructor(private imageService: ImageService) {
     this.imageService = imageService;
   }
 
-  list = async (_req: Request, res: Response) => {
-
+  list = async (_req: VercelRequest, res: VercelResponse) => {
     try {
       const data = await this.imageService.getImages();
 

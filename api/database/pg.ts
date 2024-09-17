@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { Images } from "../images";
+import { Images } from "../images/image.model";
 
 export const createPostgreSQLConection = async () => {
   try {
