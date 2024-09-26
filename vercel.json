@@ -2,19 +2,19 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/app.js",
+      "src": "api/**/*.ts",
       "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "dist/**"
-        ]
-      }
+      "config": { "tscOptions": { "build": true } }
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "dist/app.js"
+      "src": "/",
+      "dest": "/api/app.ts"
+    },
+    {
+      "src": "/images",
+      "dest": "/api/images/index.ts"
     }
   ]
 }

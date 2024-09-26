@@ -1,1 +1,0 @@
-export { createPostgreSQLConection } from "./pg";
